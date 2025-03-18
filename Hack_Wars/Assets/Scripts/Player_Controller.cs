@@ -19,12 +19,12 @@ public class Player_Controller : MonoBehaviour
     {
         // Movimiento horizontal
         float moveInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
+        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         // Salto: se activa cuando se presiona la tecla "Salto" y el jugador está en el suelo
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 
