@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boss_Ruleta_Mecanics : MonoBehaviour
 {
     public float speed = 4f;
-    public float minX = -3f, maxX = 3f;
+    public float minX = -9.5f, maxX = 9.5f;
  
     private int direction = 1;
 
