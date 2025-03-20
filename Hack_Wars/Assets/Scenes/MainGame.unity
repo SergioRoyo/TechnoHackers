@@ -427,8 +427,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eceed8c3a2a7d048ab92bf0a893c9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 5
+  setSpeed: 10
+  jumpForce: 30
+  bulletPrefab: {fileID: 6454736289229881992, guid: 44c9b7576ff40f146ab5c3f6f849151d, type: 3}
+  firePoint: {fileID: 286893036}
+  fireRate: 0.1
 --- !u!50 &286893034
 Rigidbody2D:
   serializedVersion: 4
@@ -444,7 +447,7 @@ Rigidbody2D:
   m_Mass: 1.7853982
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
