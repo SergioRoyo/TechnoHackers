@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using JetBrains.Annotations;
 
 public class PLAYER_MOVEMENT : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     public GameObject drop;
     public int _dropCount;
     public TextMeshProUGUI resourceCounter;
+    public int playerLife = 100;
+    TANKENEMY_CONTROLLER tankEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -106,7 +109,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         // Si estamos dentro de un enemigo, hacemos clic y llamamos al conteo de vida del enemigo
         if(other.tag == "ENEMY" && Input.GetMouseButton(0)) 
         {
-            other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage();
+            tankEnemy.GetDamage();
             print("BONK");
             //aqui si deja apretao se ejecuta 1000 veces por segundo, añade algun tipo de cooldown crack
         }
