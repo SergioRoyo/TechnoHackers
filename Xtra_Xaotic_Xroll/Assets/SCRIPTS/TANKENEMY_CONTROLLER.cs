@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class TANKENEMY_CONTROLLER : MonoBehaviour
 {
-    public int tankLife = 50;
+    public int tankHealth = 50;
     PLAYER_MOVEMENT playerS;
     public GameObject drop;
+    bool tankDmgCooldown;
     // Start is called before the first frame update
     void Start()
     {
-      
+      tankDmgCooldown = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.Translate(-2 * Time.deltaTime, 0, 0);
-        if(tankLife <= 0)
+        if(tankHealth <= 0)
         {
             StartCoroutine(Dropear());
         }
+        this.gameObject.transform.Translate(-2 * Time.deltaTime, 0, 0);
     }
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (CompareTag("Player"))
+        if (collision.tag == "Player")
         {
             AttackPlayer();
         }
@@ -32,11 +33,18 @@ public class TANKENEMY_CONTROLLER : MonoBehaviour
     public void AttackPlayer()
     {
         playerS.playerLife -= 2;
-        Debug.Log("Te han atacado");
+        print("Te han atacado");
     }
-    public void GetDamage()
+    public IEnumerator GetDamage()
     {
-        tankLife -= 2;
+        if (tankDmgCooldown)
+        {
+            tankHealth -= 2;
+            print("BONK TANK");
+            tankDmgCooldown = false;
+            yield return new WaitForSeconds(0.5f);
+            tankDmgCooldown = true;
+        }
     }
     public void GenerateDrop()
     {
