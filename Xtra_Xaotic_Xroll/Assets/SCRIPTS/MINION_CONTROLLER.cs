@@ -5,12 +5,13 @@ using UnityEngine;
 public class MINION_CONTROLLER : MonoBehaviour
 {
     public float minionHealth;
+    bool minionDmgCooldown;
     public GameObject drop;
-    public bool isTakingDamage = false;
     // Start is called before the first frame update
     void Start()
     {
         minionHealth = 10;
+        minionDmgCooldown = true;
     }
 
     // Update is called once per frame
@@ -24,28 +25,28 @@ public class MINION_CONTROLLER : MonoBehaviour
 
         }
 
-    }
-
-    
-    public void GetDamage(int damage)
-    {
-        if (isTakingDamage == false)
+        if (CompareTag("ENEMY")) // Comportamientos de enemigos
         {
-            isTakingDamage = true;
-            minionHealth -= damage;
+            this.gameObject.transform.Translate(-2 * Time.deltaTime, 0, 0);
         }
-        StartCoroutine(OneShoot());
-        Debug.Log(gameObject.name + " vida: " + minionHealth);
-
-        if (minionHealth <= 0)
+        if (CompareTag("ALLY")) // Comportamietos de aliados
         {
-            Destroy(gameObject);
+            this.gameObject.transform.Translate(2 * Time.deltaTime, 0, 0);
         }
     }
-    IEnumerator OneShoot()
+
+    public IEnumerator GetDamage()
     {
-        yield return new WaitForSeconds(5f);
-        isTakingDamage = false;
+        if (minionDmgCooldown)
+        {
+            minionHealth -= 2;
+            print("BONK");
+            minionDmgCooldown = false;
+            yield return new WaitForSeconds(0.5f);
+            minionDmgCooldown = true;
+        }
+
+        
     }
     public void GenerateDrop()
     {
