@@ -17,6 +17,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     public float playerPos;
     public TextMeshProUGUI locationText;
     public GameObject playerWeapon;
+    public MINION_CONTROLLER MINION_CONTROLLER;
     public GameObject drop;
     public int _dropCount;
     public TextMeshProUGUI resourceCounter;

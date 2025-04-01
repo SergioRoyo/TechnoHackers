@@ -59,14 +59,6 @@
         {
             "userAdded": false,
             "type": "UnityEngine.PhysicMaterial",
-<<<<<<< HEAD:Hack_Wars/ProjectSettings/SceneTemplateSettings.json
-            "defaultInstantiationMode": 0
-        },
-        {
-            "userAdded": false,
-            "type": "UnityEngine.PhysicsMaterial",
-=======
->>>>>>> main:Xtra_Xaotic_Xroll/ProjectSettings/SceneTemplateSettings.json
             "defaultInstantiationMode": 0
         },
         {

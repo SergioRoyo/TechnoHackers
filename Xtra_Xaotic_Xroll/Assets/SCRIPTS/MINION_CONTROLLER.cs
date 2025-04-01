@@ -23,14 +23,6 @@ public class MINION_CONTROLLER : MonoBehaviour
 
         }
 
-        if (CompareTag("ENEMY")) // Comportamientos de enemigos
-        {
-            this.gameObject.transform.Translate(-2 * Time.deltaTime, 0, 0);
-        }
-        if (CompareTag("ALLY")) // Comportamietos de aliados
-        {
-            this.gameObject.transform.Translate(2 * Time.deltaTime, 0, 0);
-        }
     }
 
     public void GetDamage()
