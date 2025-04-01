@@ -314,6 +314,7 @@ MonoBehaviour:
   barraVidaAliado1: {fileID: 5172463948587105135}
   drop: {fileID: 8144813515241523677, guid: 9af06cf892fc85d4e8995a6bd1b8b254, type: 3}
   minion_controller: {fileID: 566549378070438511, guid: 3b30ff45a31903647b7259e6ddf85d67, type: 3}
+  tankenemy_controller: {fileID: 3477406724370914006, guid: 004f5f3c2f23e6f4bb8d106cc5d7bcf9, type: 3}
 --- !u!1 &6709959143119175117
 GameObject:
   m_ObjectHideFlags: 0

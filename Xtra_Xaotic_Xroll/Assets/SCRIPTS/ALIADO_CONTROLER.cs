@@ -10,6 +10,7 @@ public class ALIADO_CONTROLER : MonoBehaviour
     public Slider barraVidaAliado1;
     public GameObject drop;
     public MINION_CONTROLLER minion_controller;
+    public TANKENEMY_CONTROLLER tankenemy_controller;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +38,21 @@ public class ALIADO_CONTROLER : MonoBehaviour
         {
             //minion_controller.minionHealth -= 2;
             MINION_CONTROLLER minion_controller = collision.gameObject.GetComponent<MINION_CONTROLLER>();
-            StartCoroutine(minion_controller.GetDamage());
+            if (minion_controller != null)
+            {
+                StartCoroutine(minion_controller.GetDamage());
+            }
+            TANKENEMY_CONTROLLER tankenemy_controller = collision.gameObject.GetComponent<TANKENEMY_CONTROLLER>();
+            if (tankenemy_controller != null)
+            {
+                StartCoroutine(tankenemy_controller.GetDamage());
+            }
+            Destroy(this.gameObject);
             //minion_controller.IEnumerator GetDamage();
             //vidaEnemigo -= damageAliado1; 
             //vidaTorre -= damageAliado1;
-            Destroy(this.gameObject);
         }
+        
     }
     public void GenerateDrop()
     {
