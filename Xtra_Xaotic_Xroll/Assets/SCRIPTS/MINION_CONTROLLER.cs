@@ -6,6 +6,7 @@ public class MINION_CONTROLLER : MonoBehaviour
 {
     public float minionHealth;
     public GameObject drop;
+    public bool isTakingDamage = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +26,26 @@ public class MINION_CONTROLLER : MonoBehaviour
 
     }
 
-    public void GetDamage()
+    
+    public void GetDamage(int damage)
     {
-        minionHealth -= 2;
+        if (isTakingDamage == false)
+        {
+            isTakingDamage = true;
+            minionHealth -= damage;
+        }
+        StartCoroutine(OneShoot());
+        Debug.Log(gameObject.name + " vida: " + minionHealth);
+
+        if (minionHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    IEnumerator OneShoot()
+    {
+        yield return new WaitForSeconds(5f);
+        isTakingDamage = false;
     }
     public void GenerateDrop()
     {

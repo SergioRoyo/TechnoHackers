@@ -107,7 +107,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         // Si estamos dentro de un enemigo, hacemos clic y llamamos al conteo de vida del enemigo
         if(other.tag == "ENEMY" && Input.GetMouseButton(0)) 
         {
-            other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage();
+            other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage(10);
             print("BONK");
             //aqui si deja apretao se ejecuta 1000 veces por segundo, añade algun tipo de cooldown crack
         }
