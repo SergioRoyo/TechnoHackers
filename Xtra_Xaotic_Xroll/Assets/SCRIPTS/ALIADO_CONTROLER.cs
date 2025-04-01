@@ -19,6 +19,10 @@ public class ALIADO_CONTROLER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CompareTag("ALLY")) // Comportamietos de aliados
+        {
+            this.gameObject.transform.Translate(2 * Time.deltaTime, 0, 0);
+        }
         if (vidaAliado1 <= 0)
         {
 
@@ -33,7 +37,8 @@ public class ALIADO_CONTROLER : MonoBehaviour
         {
             //minion_controller.minionHealth -= 2;
             MINION_CONTROLLER minion_controller = collision.gameObject.GetComponent<MINION_CONTROLLER>();
-            minion_controller.GetDamage(2);
+            StartCoroutine(minion_controller.GetDamage());
+            //minion_controller.IEnumerator GetDamage();
             //vidaEnemigo -= damageAliado1; 
             //vidaTorre -= damageAliado1;
             Destroy(this.gameObject);

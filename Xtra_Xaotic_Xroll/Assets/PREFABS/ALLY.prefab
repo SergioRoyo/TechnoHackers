@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 4453247199849713804}
   - component: {fileID: 8305557815353643887}
   - component: {fileID: 3252953367104163268}
-  - component: {fileID: 501512508589025078}
   - component: {fileID: 5114983828735421341}
   m_Layer: 8
   m_Name: ALLY
@@ -258,7 +257,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 896
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -298,18 +297,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &501512508589025078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6613056531322343589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb2016d845d00748a3c42fa24f300f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5114983828735421341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +313,7 @@ MonoBehaviour:
   damageAliado1: 10
   barraVidaAliado1: {fileID: 5172463948587105135}
   drop: {fileID: 8144813515241523677, guid: 9af06cf892fc85d4e8995a6bd1b8b254, type: 3}
+  minion_controller: {fileID: 566549378070438511, guid: 3b30ff45a31903647b7259e6ddf85d67, type: 3}
 --- !u!1 &6709959143119175117
 GameObject:
   m_ObjectHideFlags: 0
