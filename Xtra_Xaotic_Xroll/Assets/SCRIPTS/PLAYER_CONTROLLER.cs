@@ -82,11 +82,11 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         }
 
         // Si estamos dentro de un drop, nos suma puntos y eliminamos el objeto
-        if (other.tag == "DROP")
+        if (collision.collider.tag == "DROP")
         {
             _dropCount += 10;
             print(_dropCount);
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
             resourceCounter.text = _dropCount.ToString("F0");
         }
     }
