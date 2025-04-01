@@ -1190,8 +1190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyprefab: {fileID: 6613056531322343589, guid: 3b30ff45a31903647b7259e6ddf85d67, type: 3}
+  tankEnemyprefab: {fileID: 6873784725577584574, guid: 004f5f3c2f23e6f4bb8d106cc5d7bcf9, type: 3}
   generationTime: 5
-  allyBase: {fileID: 0}
+  waveRound: 2
 --- !u!4 &712365359
 Transform:
   m_ObjectHideFlags: 0
@@ -1763,7 +1764,6 @@ GameObject:
   - component: {fileID: 1052059518}
   - component: {fileID: 1052059520}
   - component: {fileID: 1052059521}
-  - component: {fileID: 1052059522}
   m_Layer: 0
   m_Name: ALLY BASE
   m_TagString: YOURBASE
@@ -1919,18 +1919,6 @@ CircleCollider2D:
   m_Offset: {x: 0.0078086853, y: 0.0069065094}
   serializedVersion: 2
   m_Radius: 0.7370882
---- !u!114 &1052059522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052059517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9729b3c442fba2748a5739fa76de3355, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1149981453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +2069,7 @@ GameObject:
   - component: {fileID: 1203768680}
   m_Layer: 7
   m_Name: PLAYERCapsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2105,10 +2093,12 @@ MonoBehaviour:
   playerPos: 0
   locationText: {fileID: 609896092}
   playerWeapon: {fileID: 282056336}
-  MINION_CONTROLLER: {fileID: 0}
   drop: {fileID: 8144813515241523677, guid: 9af06cf892fc85d4e8995a6bd1b8b254, type: 3}
   _dropCount: 0
   resourceCounter: {fileID: 579955672}
+  playerLife: 100
+  tankEnemy: {fileID: 3477406724370914006, guid: 004f5f3c2f23e6f4bb8d106cc5d7bcf9, type: 3}
+  minionEnemy: {fileID: 566549378070438511, guid: 3b30ff45a31903647b7259e6ddf85d67, type: 3}
 --- !u!212 &1203768678
 SpriteRenderer:
   m_ObjectHideFlags: 0

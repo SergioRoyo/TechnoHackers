@@ -45,8 +45,6 @@ public class MINION_CONTROLLER : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             minionDmgCooldown = true;
         }
-
-        
     }
     public void GenerateDrop()
     {

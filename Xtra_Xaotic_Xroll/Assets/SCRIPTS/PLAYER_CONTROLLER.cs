@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using JetBrains.Annotations;
 
 public class PLAYER_MOVEMENT : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     public GameObject drop;
     public int _dropCount;
     public TextMeshProUGUI resourceCounter;
+    public int playerLife = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -78,12 +80,13 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+
         // Si estamos dentro de un drop, nos suma puntos y eliminamos el objeto
-        if (collision.gameObject.tag == "DROP")
+        if (other.tag == "DROP")
         {
             _dropCount += 10;
             print(_dropCount);
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             resourceCounter.text = _dropCount.ToString("F0");
         }
     }
@@ -114,7 +117,16 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         // Si estamos dentro de un enemigo, hacemos clic y llamamos al conteo de vida del enemigo
         if(other.tag == "ENEMY" && Input.GetMouseButton(0)) 
         {
-            StartCoroutine(other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage());
+            MINION_CONTROLLER minion = other.gameObject.GetComponent<MINION_CONTROLLER>();
+            TANKENEMY_CONTROLLER tanke = other.gameObject.GetComponent<TANKENEMY_CONTROLLER>();
+            if (minion != null)
+            {
+                StartCoroutine(other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage());
+            }
+            if(tanke != null)
+            {
+                StartCoroutine(other.gameObject.GetComponent<TANKENEMY_CONTROLLER>().GetDamage());
+            }
             //aqui si deja apretao se ejecuta 1000 veces por segundo, añade algun tipo de cooldown crack
         }
     }
