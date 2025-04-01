@@ -5,11 +5,13 @@ using UnityEngine;
 public class MINION_CONTROLLER : MonoBehaviour
 {
     public float minionHealth;
+    bool minionDmgCooldown;
     public GameObject drop;
     // Start is called before the first frame update
     void Start()
     {
         minionHealth = 10;
+        minionDmgCooldown = true;
     }
 
     // Update is called once per frame
@@ -33,9 +35,18 @@ public class MINION_CONTROLLER : MonoBehaviour
         }
     }
 
-    public void GetDamage()
+    public IEnumerator GetDamage()
     {
-        minionHealth -= 2;
+        if (minionDmgCooldown)
+        {
+            minionHealth -= 2;
+            print("BONK");
+            minionDmgCooldown = false;
+            yield return new WaitForSeconds(0.5f);
+            minionDmgCooldown = true;
+        }
+
+        
     }
     public void GenerateDrop()
     {

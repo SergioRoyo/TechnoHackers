@@ -78,6 +78,14 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+        // Si estamos dentro de un drop, nos suma puntos y eliminamos el objeto
+        if (collision.gameObject.tag == "DROP")
+        {
+            _dropCount += 10;
+            print(_dropCount);
+            Destroy(collision.gameObject);
+            resourceCounter.text = _dropCount.ToString("F0");
+        }
     }
 
     // Comprobamos la entrada en triggers y sus tags
@@ -106,18 +114,8 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         // Si estamos dentro de un enemigo, hacemos clic y llamamos al conteo de vida del enemigo
         if(other.tag == "ENEMY" && Input.GetMouseButton(0)) 
         {
-            other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage();
-            print("BONK");
+            StartCoroutine(other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage());
             //aqui si deja apretao se ejecuta 1000 veces por segundo, añade algun tipo de cooldown crack
-        }
-
-        // Si estamos dentro de un drop, nos suma puntos y eliminamos el objeto
-        if (other.tag == "DROP")
-        {
-            _dropCount += 10;
-            print(_dropCount);
-            Destroy(other.gameObject);
-            resourceCounter.text = _dropCount.ToString("F0");
         }
     }
 }
