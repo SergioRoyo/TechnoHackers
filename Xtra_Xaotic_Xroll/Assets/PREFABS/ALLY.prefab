@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4993609399696882455}
   - component: {fileID: 2849005823632163499}
   - component: {fileID: 1412018668292480344}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2974310915025234994}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 501512508589025078}
   - component: {fileID: 5114983828735421341}
   - component: {fileID: -5996053490170359777}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ALLY
   m_TagString: ALLY
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -350,7 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5695380374427605451}
   - component: {fileID: 5172463948587105135}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 3644307769927150584}
   - component: {fileID: 8789853753164216212}
   - component: {fileID: 6030524299822281603}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2732950054444030743}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 8167108928003292170}
   - component: {fileID: 6074051658947800817}
   - component: {fileID: 2043446095069009416}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 3264445207191985913}
   - component: {fileID: 5596007369973655011}
   - component: {fileID: 1706439681538894211}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
