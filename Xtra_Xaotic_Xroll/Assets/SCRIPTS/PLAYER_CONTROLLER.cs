@@ -80,6 +80,15 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+
+        // Si estamos dentro de un drop, nos suma puntos y eliminamos el objeto
+        if (other.tag == "DROP")
+        {
+            _dropCount += 10;
+            print(_dropCount);
+            Destroy(other.gameObject);
+            resourceCounter.text = _dropCount.ToString("F0");
+        }
     }
 
     // Comprobamos la entrada en triggers y sus tags
@@ -119,15 +128,6 @@ public class PLAYER_MOVEMENT : MonoBehaviour
                 StartCoroutine(other.gameObject.GetComponent<TANKENEMY_CONTROLLER>().GetDamage());
             }
             //aqui si deja apretao se ejecuta 1000 veces por segundo, añade algun tipo de cooldown crack
-        }
-
-        // Si estamos dentro de un drop, nos suma puntos y eliminamos el objeto
-        if (other.tag == "DROP")
-        {
-            _dropCount += 10;
-            print(_dropCount);
-            Destroy(other.gameObject);
-            resourceCounter.text = _dropCount.ToString("F0");
         }
     }
 }
