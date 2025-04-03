@@ -14,8 +14,10 @@ public class CHOZA_CONTROLLER : MonoBehaviour
     public int maxChozaHealth = 50;       // Salud máxima de la choza
     public GameObject repairButton;
     public float repairTime = 2f;         // Tiempo de reparación
-    public int woodAmount = 100;          // Cantidad de madera disponible
     public int repairCostPerHealth = 10; // Madera por cada punto de salud reparado
+    public PLAYER_MOVEMENT player;        // Referencia al script del jugador
+
+    private int damageReceived = 0;       // Almacena el daño recibido
 
     // Start is called before the first frame update
     void Start()
@@ -33,45 +35,53 @@ public class CHOZA_CONTROLLER : MonoBehaviour
         {
             Active = false;
         }
+
+        // Si la choza está inactiva (destruida), activa el botón de reparación
         if (Active == false)
         {
-            CancelInvoke();
             repairButton.SetActive(true);
-        }
-        barraVidaChoza.value = chozaHealth;
-    }
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "ENEMY" && Active == true)
-        {
-            GetDamage();
-        }
-    }
-    public void GenerateAllyChoza()
-    {
-        Instantiate(allyChoza, transform.position, Quaternion.identity);
-    }
-
-    public void RepairChoza()
-    {
-        // Comprobar si hay suficiente madera y si la choza no está a plena salud
-        if (woodAmount > 0 && chozaHealth < maxChozaHealth)
-        {
-            // Inicia la reparación con un tiempo de espera
-            StartCoroutine(RepairCoroutine());
         }
         else
         {
-            Debug.Log("No hay suficiente madera o la choza ya está a plena salud.");
+            repairButton.SetActive(false);
+        }
+
+        barraVidaChoza.value = chozaHealth;
+    }
+
+    // Colisión con enemigos para recibir daño
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("ENEMY") && Active)
+        {
+            GetDamage(5);  // El daño recibido por el enemigo es de 5 por cada colisión
         }
     }
 
-    public void GetDamage()
+    // Función que aplica el daño a la choza y acumula el daño total
+    public void GetDamage(int damage)
     {
-        chozaHealth -= 5;
-        print("Atacan la choza");
+        chozaHealth -= damage;
+        damageReceived += damage;
+        print("Atacan la choza. Daño recibido: " + damageReceived);
     }
 
+    // Función de reparación de la choza
+    public void RepairChoza()
+    {
+        // Comprobar si la choza está destruida (sin vida) y no está activa
+        if (chozaHealth <= 0 && Active == false)
+        {
+            // Comprobar si hay suficiente madera y si la choza no está a plena salud
+            if (player.woodCount > 0 && chozaHealth < maxChozaHealth)
+            {
+                // Inicia la reparación con un tiempo de espera
+                StartCoroutine(RepairCoroutine());
+            }
+        }
+    }
+
+    // Corutina que maneja la reparación de la choza
     private IEnumerator RepairCoroutine()
     {
         // Desactiva el botón de reparación mientras se repara
@@ -84,18 +94,19 @@ public class CHOZA_CONTROLLER : MonoBehaviour
         int woodCost = healthToRepair * repairCostPerHealth;
 
         // Verifica que haya suficiente madera
-        if (woodAmount >= woodCost)
+        if (player.woodCount >= woodCost)
         {
             // Espera durante el tiempo de reparación
             yield return new WaitForSeconds(repairTime);
 
             // Repara la choza y actualiza la cantidad de madera
             chozaHealth = maxChozaHealth;
-            woodAmount -= woodCost;
+            player.woodCount -= woodCost;
 
             // Una vez reparada, activa la choza
             Active = true;
-            Debug.Log("Choza reparada. Madera restante: " + woodAmount);
+            damageReceived = 0;  // Restablecemos el daño recibido tras la reparación
+            Debug.Log("Choza reparada. Madera restante: " + player.woodCount);
         }
         else
         {
@@ -105,5 +116,10 @@ public class CHOZA_CONTROLLER : MonoBehaviour
         // Reactiva el botón de reparación
         repairButton.SetActive(true);
     }
-}
 
+    // Genera una nueva choza aliada
+    public void GenerateAllyChoza()
+    {
+        Instantiate(allyChoza, transform.position, Quaternion.identity);
+    }
+}
