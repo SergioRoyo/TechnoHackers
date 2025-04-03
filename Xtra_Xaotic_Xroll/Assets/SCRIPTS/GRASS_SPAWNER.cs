@@ -12,7 +12,7 @@ public class GRASS_SPAWNER : MonoBehaviour
     {
         for (int i = 0; i < grassSpawner.transform.childCount; i++)
         {
-            grassSpawner.transform.GetChild(i).gameObject.SetActive(false);
+            grassSpawner.transform.GetChild(i).gameObject.SetActive(false);// descativa todos los seto(GRASS) al comenzar
         }
 
     }
@@ -20,7 +20,7 @@ public class GRASS_SPAWNER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.S))// llama a funcion para talar, hay que cambiarlo para que sea automatico con la noche y el dia
         {
             for (int i = 0; i < grassSpawner.transform.childCount; i++)
             {
@@ -30,7 +30,7 @@ public class GRASS_SPAWNER : MonoBehaviour
         }
        
     }
-    public void SpawnRandomGrass()
+    public void SpawnRandomGrass()//spawnea GRASS en lugares aleatorios y una cantidad aleatoria cuando se le llama
     {
         int numOfGrass = Random.Range(grassSpawner.transform.childCount / 4, grassSpawner.transform.childCount / 2);
         for (int i = 0; i < numOfGrass; i++)
