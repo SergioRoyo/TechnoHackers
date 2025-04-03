@@ -5,7 +5,6 @@ using UnityEngine;
 public class TANKENEMY_CONTROLLER : MonoBehaviour
 {
     public int tankHealth = 50;
-    PLAYER_MOVEMENT playerS;
     public GameObject drop;
     public bool tankDmgCooldown;
     // Start is called before the first frame update
@@ -22,18 +21,6 @@ public class TANKENEMY_CONTROLLER : MonoBehaviour
             StartCoroutine(Dropear());
         }
         this.gameObject.transform.Translate(-2 * Time.deltaTime, 0, 0);
-    }
-    public void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            AttackPlayer();
-        }
-    }
-    public void AttackPlayer()
-    {
-        playerS.playerLife -= 2;
-        print("Te han atacado");
     }
     public IEnumerator GetDamage()
     {

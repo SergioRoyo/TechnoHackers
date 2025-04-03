@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CHOZA_CONTROLLER : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CHOZA_CONTROLLER : MonoBehaviour
     public float generationTime = 5f;
     public int nivelChoza;
     public bool Active;
+    public Slider barraVidaChoza;
     public int chozaHealth = 50;          // Salud inicial de la choza
     public int maxChozaHealth = 50;       // Salud máxima de la choza
     public GameObject repairButton;
@@ -19,6 +21,7 @@ public class CHOZA_CONTROLLER : MonoBehaviour
     void Start()
     {
         Active = true;
+        barraVidaChoza.value = chozaHealth;
         repairButton.SetActive(false);
         InvokeRepeating("GenerateAllyChoza", 5f, generationTime);
     }
@@ -35,8 +38,15 @@ public class CHOZA_CONTROLLER : MonoBehaviour
             CancelInvoke();
             repairButton.SetActive(true);
         }
+        barraVidaChoza.value = chozaHealth;
     }
-
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "ENEMY" && Active == true)
+        {
+            GetDamage();
+        }
+    }
     public void GenerateAllyChoza()
     {
         Instantiate(allyChoza, transform.position, Quaternion.identity);
@@ -54,6 +64,12 @@ public class CHOZA_CONTROLLER : MonoBehaviour
         {
             Debug.Log("No hay suficiente madera o la choza ya está a plena salud.");
         }
+    }
+
+    public void GetDamage()
+    {
+        chozaHealth -= 5;
+        print("Atacan la choza");
     }
 
     private IEnumerator RepairCoroutine()

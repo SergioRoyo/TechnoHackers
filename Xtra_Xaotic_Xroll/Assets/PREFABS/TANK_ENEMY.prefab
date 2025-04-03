@@ -135,8 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9775b4baadd0df841a2d047c68f61de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankLife: 50
+  tankHealth: 50
+  choza: {fileID: 6980911021202769111, guid: 0e0e721052469c249b168fe6f0b17d27, type: 3}
   drop: {fileID: 8144813515241523677, guid: 9af06cf892fc85d4e8995a6bd1b8b254, type: 3}
+  tankDmgCooldown: 0
 --- !u!50 &3519814125770881842
 Rigidbody2D:
   serializedVersion: 4
