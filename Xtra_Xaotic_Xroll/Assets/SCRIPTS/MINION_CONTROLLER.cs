@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MINION_CONTROLLER : MonoBehaviour
 {
+    public Slider barraVidaMinion;
     public float minionHealth;
     public bool minionDmgCooldown;
     public GameObject drop;
     // Start is called before the first frame update
     void Start()
     {
+        barraVidaMinion.value = minionHealth;
         minionHealth = 10;
         minionDmgCooldown = true;
     }
@@ -29,10 +32,11 @@ public class MINION_CONTROLLER : MonoBehaviour
         {
             this.gameObject.transform.Translate(-2 * Time.deltaTime, 0, 0);
         }
-        if (CompareTag("ALLY")) // Comportamietos de aliados
-        {
-            this.gameObject.transform.Translate(2 * Time.deltaTime, 0, 0);
-        }
+        //if (CompareTag("ALLY")) // Comportamietos de aliados
+        //{
+        //    this.gameObject.transform.Translate(2 * Time.deltaTime, 0, 0);
+        //}
+        barraVidaMinion.value = minionHealth;
     }
 
     public IEnumerator GetDamage()

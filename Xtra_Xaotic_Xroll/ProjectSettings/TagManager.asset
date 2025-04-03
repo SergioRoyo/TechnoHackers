@@ -10,7 +10,7 @@ TagManager:
   - ENEMY
   - DROP
   - ALLY
-  - CHOZA
+  - WOOD
   layers:
   - Default
   - TransparentFX

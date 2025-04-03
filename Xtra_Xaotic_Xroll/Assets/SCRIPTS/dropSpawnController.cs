@@ -8,10 +8,9 @@ public class dropSpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int a = Random.value < 0.5f ? -1 : 1;
+        int a = Random.value < 0.5f ? -1 : 1; //int a sera aleatoriamente 1 o -1
         StartCoroutine(dropSpawn());
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2((dropForce/2) * a, dropForce));
-        Debug.Log("a");
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2((dropForce/2) * a, dropForce));// se multiplicara por el int a, para que salga disparado aleatoriamente a la izda o a la dcha
     }
 
     // Update is called once per frame
