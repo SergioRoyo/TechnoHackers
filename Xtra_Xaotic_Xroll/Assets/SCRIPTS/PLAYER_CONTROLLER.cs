@@ -115,10 +115,11 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     public void OnTriggerStay2D(Collider2D other)
     {
         // Si estamos dentro de un enemigo, hacemos clic y llamamos al conteo de vida del enemigo
-        if(other.tag == "ENEMY" && Input.GetMouseButton(0)) 
+        if((other.tag == "ENEMY" || other.tag == "GRASS") && Input.GetMouseButton(0)) 
         {
             MINION_CONTROLLER minion = other.gameObject.GetComponent<MINION_CONTROLLER>();
             TANKENEMY_CONTROLLER tanke = other.gameObject.GetComponent<TANKENEMY_CONTROLLER>();
+            GRASS_SPAWNER grass = other.gameObject.GetComponent<GRASS_SPAWNER>();
             if (minion != null)
             {
                 StartCoroutine(other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage());
@@ -126,6 +127,10 @@ public class PLAYER_MOVEMENT : MonoBehaviour
             if(tanke != null)
             {
                 StartCoroutine(other.gameObject.GetComponent<TANKENEMY_CONTROLLER>().GetDamage());
+            }
+            if (grass != null)
+            {
+                StartCoroutine(grass.GrassDestroy());
             }
             //aqui si deja apretao se ejecuta 1000 veces por segundo, añade algun tipo de cooldown crack
         }
