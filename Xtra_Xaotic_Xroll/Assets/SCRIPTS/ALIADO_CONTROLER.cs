@@ -27,30 +27,36 @@ public class ALIADO_CONTROLER : MonoBehaviour
         if (vidaAliado1 <= 0)
         {
 
-            StartCoroutine(Dropear());
+            CooldownAliado();
         }
 
         barraVidaAliado1.value = vidaAliado1;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public IEnumerator CooldownAliado()
     {
-        if (collision.gameObject.CompareTag("ENEMY") || collision.gameObject.CompareTag("TORRE"))
+        yield return new WaitForSeconds(.6f);
+        Destroy(this.gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("ENEMY"))
         {
             //minion_controller.minionHealth -= 2;
-            MINION_CONTROLLER minion_controller = collision.gameObject.GetComponent<MINION_CONTROLLER>();
-            if (minion_controller != null)
+            MINION_CONTROLLER minion = other.gameObject.GetComponent<MINION_CONTROLLER>();
+            TANKENEMY_CONTROLLER tanke = other.gameObject.GetComponent<TANKENEMY_CONTROLLER>();
+            if (minion != null)
             {
-                StartCoroutine(minion_controller.GetDamage());
+                StartCoroutine(other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage());
+                StartCoroutine(CooldownAliado());
+
             }
-            TANKENEMY_CONTROLLER tankenemy_controller = collision.gameObject.GetComponent<TANKENEMY_CONTROLLER>();
-            if (tankenemy_controller != null)
+            if (tanke != null)
             {
-                StartCoroutine(tankenemy_controller.GetDamage());
+                StartCoroutine(other.gameObject.GetComponent<TANKENEMY_CONTROLLER>().GetDamage());
+                StartCoroutine(CooldownAliado());
             }
-            Destroy(this.gameObject);
-            //minion_controller.IEnumerator GetDamage();
-            //vidaEnemigo -= damageAliado1; 
-            //vidaTorre -= damageAliado1;
+            vidaAliado1 = 0;
+           
         }
         
     }

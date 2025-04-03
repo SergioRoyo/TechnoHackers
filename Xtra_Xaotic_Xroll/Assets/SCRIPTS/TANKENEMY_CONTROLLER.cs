@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class TANKENEMY_CONTROLLER : MonoBehaviour
 {
-    public int tankHealth = 50;
+    public Slider barraVidaTanke;
+    public int tankHealth = 20;
     PLAYER_MOVEMENT playerS;
     public GameObject drop;
-    bool tankDmgCooldown;
+    public bool tankDmgCooldown;
     // Start is called before the first frame update
     void Start()
     {
-      tankDmgCooldown = true;
+        barraVidaTanke.value = tankHealth;
+        tankDmgCooldown = true;
     }
 
     // Update is called once per frame
@@ -22,6 +26,8 @@ public class TANKENEMY_CONTROLLER : MonoBehaviour
             StartCoroutine(Dropear());
         }
         this.gameObject.transform.Translate(-2 * Time.deltaTime, 0, 0);
+        barraVidaTanke.value = tankHealth;
+
     }
     public void OnTriggerStay2D(Collider2D collision)
     {
