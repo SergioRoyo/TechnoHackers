@@ -5,7 +5,7 @@ using UnityEngine;
 public class MINION_CONTROLLER : MonoBehaviour
 {
     public float minionHealth;
-    bool minionDmgCooldown;
+    public bool minionDmgCooldown;
     public GameObject drop;
     // Start is called before the first frame update
     void Start()

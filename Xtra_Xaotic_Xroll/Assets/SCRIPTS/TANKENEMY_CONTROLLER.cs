@@ -7,7 +7,7 @@ public class TANKENEMY_CONTROLLER : MonoBehaviour
     public int tankHealth = 50;
     PLAYER_MOVEMENT playerS;
     public GameObject drop;
-    bool tankDmgCooldown;
+    public bool tankDmgCooldown;
     // Start is called before the first frame update
     void Start()
     {

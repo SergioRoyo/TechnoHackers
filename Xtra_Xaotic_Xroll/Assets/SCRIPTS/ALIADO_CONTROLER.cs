@@ -26,15 +26,16 @@ public class ALIADO_CONTROLER : MonoBehaviour
         }
         if (vidaAliado1 <= 0)
         {
-
-            StartCoroutine(Dropear());
+            minion_controller.minionDmgCooldown = false;
+            tankenemy_controller.tankDmgCooldown = false;
+            Destroy(this.gameObject);
         }
 
         barraVidaAliado1.value = vidaAliado1;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ENEMY") || collision.gameObject.CompareTag("TORRE"))
+        if (collision.gameObject.CompareTag("ENEMY"))
         {
             //minion_controller.minionHealth -= 2;
             MINION_CONTROLLER minion_controller = collision.gameObject.GetComponent<MINION_CONTROLLER>();
@@ -47,23 +48,11 @@ public class ALIADO_CONTROLER : MonoBehaviour
             {
                 StartCoroutine(tankenemy_controller.GetDamage());
             }
-            Destroy(this.gameObject);
+            vidaAliado1 -= 2;
             //minion_controller.IEnumerator GetDamage();
             //vidaEnemigo -= damageAliado1; 
             //vidaTorre -= damageAliado1;
         }
         
     }
-    public void GenerateDrop()
-    {
-        // Generar drop en la posición del enemigo
-        Instantiate(drop, transform.position, Quaternion.identity);
-    }
-    private IEnumerator Dropear() // Corrutina para crear un drop al morir un enemigo
-    {
-        yield return new WaitForSeconds(0.0f);
-        GenerateDrop();
-        Destroy(this.gameObject);
-    }
-
 }
