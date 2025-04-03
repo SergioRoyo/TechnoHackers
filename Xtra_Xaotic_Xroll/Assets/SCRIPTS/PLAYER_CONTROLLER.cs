@@ -19,6 +19,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     public GameObject playerWeapon;
     public GameObject drop;
     public int _dropCount;
+    public int woodCount;
     public TextMeshProUGUI resourceCounter;
 
     // Start is called before the first frame update
@@ -48,6 +49,8 @@ public class PLAYER_MOVEMENT : MonoBehaviour
             _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
             _jumpCount++;
         }
+
+        resourceCounter.text = _dropCount.ToString("F0");
     }
     void FlipSprite(float direction)
     {
@@ -84,7 +87,13 @@ public class PLAYER_MOVEMENT : MonoBehaviour
             _dropCount += 10;
             print(_dropCount);
             Destroy(collision.gameObject);
-            resourceCounter.text = _dropCount.ToString("F0");
+        }
+
+        if (collision.gameObject.tag == "WOOD")
+        {
+            woodCount++;
+            print(woodCount);
+            Destroy(collision.gameObject);
         }
     }
 
