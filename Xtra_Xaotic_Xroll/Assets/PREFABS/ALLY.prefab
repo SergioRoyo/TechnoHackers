@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3252953367104163268}
   - component: {fileID: 501512508589025078}
   - component: {fileID: -5996053490170359777}
+  - component: {fileID: 1667086507122756918}
   m_Layer: 6
   m_Name: ALLY
   m_TagString: ALLY
@@ -212,3 +213,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionHealth: 10
   drop: {fileID: 8144813515241523677, guid: 9af06cf892fc85d4e8995a6bd1b8b254, type: 3}
+--- !u!114 &1667086507122756918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613056531322343589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b43604685940e459ed3378a6280abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atackSpeed: 2

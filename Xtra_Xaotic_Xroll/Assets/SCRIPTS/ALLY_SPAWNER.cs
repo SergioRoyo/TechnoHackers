@@ -5,20 +5,20 @@ using UnityEngine;
 public class ALLY_SPAWNER : MonoBehaviour
 {
     public GameObject allyprefab;
+    public GameObject background_a;
+    public float allybaseHealth;
     // Start is called before the first frame update
     void Start()
     {
-
+        allybaseHealth = 50;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void GetDamage()
     {
-
+        allybaseHealth -= 5;
     }
     public void GenerateAlly()
     {
-        // Generar el enemigo en la posición del spawner
+        // Generar el aliado en la posicion del spawner
         Instantiate(allyprefab, transform.position, Quaternion.identity);
     }
 }

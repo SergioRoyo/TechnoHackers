@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3252953367104163268}
   - component: {fileID: 2822943218851703741}
   - component: {fileID: 566549378070438511}
+  - component: {fileID: 3749291012346069242}
   m_Layer: 6
   m_Name: ENEMY
   m_TagString: ENEMY
@@ -212,3 +213,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionHealth: 10
   drop: {fileID: 8144813515241523677, guid: 9af06cf892fc85d4e8995a6bd1b8b254, type: 3}
+--- !u!114 &3749291012346069242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613056531322343589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b7205581111014d95c6a85b3f40d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 10
+  atackSpeed: 2

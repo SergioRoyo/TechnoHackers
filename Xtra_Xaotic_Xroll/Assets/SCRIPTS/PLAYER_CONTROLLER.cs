@@ -8,6 +8,7 @@ using TMPro;
 
 public class PLAYER_MOVEMENT : MonoBehaviour
 {
+    public ALLY_SPAWNER ALLY_SPAWNER;
     public float vel;
     public float jumpForce;
     int _jumpCount;
@@ -21,6 +22,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     public GameObject drop;
     public int _dropCount;
     public TextMeshProUGUI resourceCounter;
+    public TextMeshProUGUI MENSAGE;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         locationText.text = playerPos.ToString("F0");
 
         float direction = Input.GetAxis("Horizontal");
-        if (direction != 0) // Mambiar la direccion del sprite segun su desplazamiento
+        if (direction != 0) // Cambiar la direccion del sprite segun su desplazamiento
         {
             FlipSprite(direction);
         }
@@ -68,7 +70,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     // Comprobamos los colliders y sus tags
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        // Cuando tocamos el suele, reseteamos la cuenta de saltos
+        // Cuando tocamos el suelo, reseteamos la cuenta de saltos
         if (collision.collider.tag == "SUELO")
         {
             _jumpCount = 0;
@@ -98,6 +100,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         if (other.tag == "YOURBASE")
         {
             vaultmenu.SetActive(false);
+     
         }
     }
 
