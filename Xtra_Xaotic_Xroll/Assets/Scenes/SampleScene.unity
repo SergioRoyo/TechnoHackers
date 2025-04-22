@@ -1531,7 +1531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyprefab: {fileID: 6613056531322343589, guid: 3b30ff45a31903647b7259e6ddf85d67, type: 3}
   tankEnemyprefab: {fileID: 6873784725577584574, guid: 004f5f3c2f23e6f4bb8d106cc5d7bcf9, type: 3}
-  generationTime: 5
+  generationTime: 10
   waveRound: 2
 --- !u!4 &712365359
 Transform:
