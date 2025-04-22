@@ -8,11 +8,12 @@ public class ENEMY_SPAWNER : MonoBehaviour
     public GameObject tankEnemyprefab;
     public float generationTime = 5f;
     public int waveRound;
+    public List<GameObject> enemies = new();
+    PLAYER_MOVEMENT player;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("GenerateEnemy", 0f, generationTime);
-        InvokeRepeating("GenerateTank", 2f, generationTime);
+        player = FindAnyObjectByType<PLAYER_MOVEMENT>();
     }
 
     // Update is called once per frame
@@ -20,14 +21,36 @@ public class ENEMY_SPAWNER : MonoBehaviour
     {
     
     }
+
+    public void NightEnemySpawn()
+    {
+        InvokeRepeating("GenerateEnemy", 0f, generationTime);
+        InvokeRepeating("GenerateTank", 2f, generationTime);
+    }
     public void GenerateEnemy()
     {
         // Generar el enemigo en la posición del spawner
-        Instantiate(enemyprefab, transform.position, Quaternion.identity);
+        GameObject enemyGenerated = Instantiate(enemyprefab, transform.position, Quaternion.identity);
+        enemies.Add(enemyGenerated);
     }
     public void GenerateTank()
     {
-        Instantiate(tankEnemyprefab, transform.position, Quaternion.identity);
+        GameObject tankGenerated = Instantiate(tankEnemyprefab, transform.position, Quaternion.identity);
+        enemies.Add(tankGenerated);
+    }
+
+    public void StopEnemySpawner()
+    {
+        CancelInvoke("GenerateEnemy");
+        CancelInvoke("GenerateTank");
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                Destroy(enemy);
+            }
+        }
+        enemies.Clear();
     }
 
 }

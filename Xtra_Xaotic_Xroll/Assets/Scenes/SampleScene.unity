@@ -1278,6 +1278,7 @@ MonoBehaviour:
   tankEnemyprefab: {fileID: 6873784725577584574, guid: 004f5f3c2f23e6f4bb8d106cc5d7bcf9, type: 3}
   generationTime: 5
   waveRound: 2
+  enemies: []
 --- !u!4 &712365359
 Transform:
   m_ObjectHideFlags: 0
@@ -2182,8 +2183,15 @@ MonoBehaviour:
   _dropCount: 0
   resourceCounter: {fileID: 579955672}
   playerLife: 100
+<<<<<<< Updated upstream
   tankEnemy: {fileID: 3477406724370914006, guid: 004f5f3c2f23e6f4bb8d106cc5d7bcf9, type: 3}
   minionEnemy: {fileID: 566549378070438511, guid: 3b30ff45a31903647b7259e6ddf85d67, type: 3}
+=======
+  isDay: 0
+  enemyCooldown: 0
+  dayBg: {fileID: 1571106804}
+  nightBg: {fileID: 663352693}
+>>>>>>> Stashed changes
 --- !u!212 &1203768678
 SpriteRenderer:
   m_ObjectHideFlags: 0
