@@ -652,6 +652,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allyprefab: {fileID: 6613056531322343589, guid: fe1df33fe38ee7f4381859004281a8f3, type: 3}
+  background_a: {fileID: 0}
+  allybaseHealth: 0
 --- !u!4 &345964654
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,10 +1531,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1833f3e9ae9ca0846b182a77eb81e227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allyBase: {fileID: 0}
+  background_e: {fileID: 0}
+  enemybaseHealth: 0
   enemyprefab: {fileID: 6613056531322343589, guid: 3b30ff45a31903647b7259e6ddf85d67, type: 3}
   tankEnemyprefab: {fileID: 6873784725577584574, guid: 004f5f3c2f23e6f4bb8d106cc5d7bcf9, type: 3}
   generationTime: 10
-  waveRound: 2
+  waveRound: 0
 --- !u!4 &712365359
 Transform:
   m_ObjectHideFlags: 0
