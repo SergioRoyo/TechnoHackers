@@ -5,11 +5,15 @@ using UnityEngine;
 public class ALLY_SPAWNER : MonoBehaviour
 {
     public GameObject allyprefab;
+    public GameObject background_a;
+    public float allybaseHealth;
+   
     PLAYER_MOVEMENT pm;
     // Start is called before the first frame update
     void Start()
     {
         pm = FindAnyObjectByType<PLAYER_MOVEMENT>();
+        allybaseHealth = 50;
     }
 
     // Update is called once per frame
@@ -25,4 +29,12 @@ public class ALLY_SPAWNER : MonoBehaviour
             pm._dropCount -= 20;
         }
     }
+    
+    
+    public void GetDamage()
+    {
+
+        allybaseHealth -= 5;
+    }
+    
 }
