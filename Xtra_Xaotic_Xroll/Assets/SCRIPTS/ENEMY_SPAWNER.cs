@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ENEMY_SPAWNER : MonoBehaviour
 {
+    
+    
+    public GameObject allyBase;
+    public GameObject background_e;
+    public float enemybaseHealth;
+
     public GameObject enemyprefab;
     public GameObject tankEnemyprefab;
     public float generationTime = 5f;
@@ -11,6 +17,9 @@ public class ENEMY_SPAWNER : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemybaseHealth = 50;
+      
+
         InvokeRepeating("GenerateEnemy", 0f, generationTime);
         InvokeRepeating("GenerateTank", 2f, generationTime);
     }
@@ -29,5 +38,16 @@ public class ENEMY_SPAWNER : MonoBehaviour
     {
         Instantiate(tankEnemyprefab, transform.position, Quaternion.identity);
     }
+
+    
+    public void GetDamage()
+    {
+
+        enemybaseHealth -= 5;
+    }
+    
+
+
+
 
 }
