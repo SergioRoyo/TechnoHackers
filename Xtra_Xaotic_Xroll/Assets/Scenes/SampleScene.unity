@@ -652,6 +652,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allyprefab: {fileID: 6613056531322343589, guid: fe1df33fe38ee7f4381859004281a8f3, type: 3}
+  background_a: {fileID: 0}
+  allybaseHealth: 0
 --- !u!4 &345964654
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,10 +1531,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1833f3e9ae9ca0846b182a77eb81e227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allyBase: {fileID: 0}
+  background_e: {fileID: 0}
+  enemybaseHealth: 0
   enemyprefab: {fileID: 6613056531322343589, guid: 3b30ff45a31903647b7259e6ddf85d67, type: 3}
   tankEnemyprefab: {fileID: 6873784725577584574, guid: 004f5f3c2f23e6f4bb8d106cc5d7bcf9, type: 3}
   generationTime: 10
-  waveRound: 2
+  waveRound: 0
 --- !u!4 &712365359
 Transform:
   m_ObjectHideFlags: 0
@@ -1689,6 +1694,7 @@ GameObject:
   - component: {fileID: 843504219}
   - component: {fileID: 843504218}
   - component: {fileID: 843504220}
+  - component: {fileID: 843504221}
   m_Layer: 0
   m_Name: ENEMY BASE
   m_TagString: ENEMYBASE
@@ -1809,6 +1815,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.058711052, y: 2.1530786}
   m_EdgeRadius: 0
+--- !u!114 &843504221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843504217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c65da8a9eeb77cf4a94c45167b3186b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rellenoBarraVidaVil: {fileID: 0}
 --- !u!1 &887142958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2189,7 @@ GameObject:
   - component: {fileID: 1052059518}
   - component: {fileID: 1052059520}
   - component: {fileID: 1052059521}
+  - component: {fileID: 1052059522}
   m_Layer: 0
   m_Name: ALLY BASE
   m_TagString: YOURBASE
@@ -2325,6 +2345,19 @@ CircleCollider2D:
   m_Offset: {x: 0.0078086853, y: 0.0069065094}
   serializedVersion: 2
   m_Radius: 0.7370882
+--- !u!114 &1052059522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052059517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdaa315b5cd0ce245ba1ed2e91f808bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rellenoBarraVida: {fileID: 0}
 --- !u!1001 &1066638014
 PrefabInstance:
   m_ObjectHideFlags: 0
