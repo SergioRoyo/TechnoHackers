@@ -23,6 +23,15 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     public int woodCount;
     public TextMeshProUGUI resourceCounter;
     public int playerLife = 100;
+    public bool isDay;
+    bool treeCooldown;
+    public bool enemyCooldown;
+
+    GRASS_SPAWNER grassSpawner;
+    ENEMY_SPAWNER enemySpawner;
+
+    public GameObject dayBg;
+    public GameObject nightBg;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +39,11 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         // Desactivamos el panel del Vault y pillamos el RigidBody
         vaultmenu.SetActive(false);
         _rb = GetComponent<Rigidbody2D>();
+        isDay = true;
+        treeCooldown = true;
+        StartCoroutine(DayNightCycle());
+        grassSpawner = FindAnyObjectByType<GRASS_SPAWNER>();
+        enemySpawner = FindAnyObjectByType<ENEMY_SPAWNER>();
     }
 
     // Update is called once per frame
@@ -53,7 +67,57 @@ public class PLAYER_MOVEMENT : MonoBehaviour
         }
 
         resourceCounter.text = _dropCount.ToString("F0");
+
+        if (isDay)
+        {
+            if (treeCooldown)
+            {
+                grassSpawner.DaySpawnTrees();
+                treeCooldown = false;
+            }
+            if (!grassSpawner.gameObject.activeSelf)
+            {
+                grassSpawner.gameObject.SetActive(true);
+            }
+            if (!enemyCooldown)
+            {
+                enemySpawner.StopEnemySpawner();
+                enemyCooldown = true;
+            }
+            dayBg.SetActive(true);
+            nightBg.SetActive(false);
+        }
+        else
+        {
+            dayBg.SetActive(false);
+            nightBg.SetActive(true);
+            if (enemyCooldown)
+            {
+                enemySpawner.NightEnemySpawn();
+                enemyCooldown = false;
+            }
+        }
     }
+
+    IEnumerator DayNightCycle()
+    {
+        if (isDay)
+        {
+            yield return new WaitForSeconds(7);
+            isDay = false;
+            enemyCooldown = true;
+            StartCoroutine(DayNightCycle());
+        }
+        else
+        {
+            grassSpawner.gameObject.SetActive(false);
+            yield return new WaitForSeconds(7);
+            isDay = true;
+            treeCooldown = true;
+            StartCoroutine(DayNightCycle());
+        }
+    }
+
     void FlipSprite(float direction)
     {
         // Si el player se mueve a la izquierda -1
@@ -124,7 +188,7 @@ public class PLAYER_MOVEMENT : MonoBehaviour
     public void OnTriggerStay2D(Collider2D other)
     {
         // Si estamos dentro de un enemigo, hacemos clic y llamamos al conteo de vida del enemigo
-        if (other.tag == "ENEMY" && Input.GetMouseButton(0))
+        if(other.tag == "ENEMY" && Input.GetMouseButton(0)) 
         {
             MINION_CONTROLLER minion = other.gameObject.GetComponent<MINION_CONTROLLER>();
             TANKENEMY_CONTROLLER tanke = other.gameObject.GetComponent<TANKENEMY_CONTROLLER>();
@@ -132,17 +196,11 @@ public class PLAYER_MOVEMENT : MonoBehaviour
             {
                 StartCoroutine(other.gameObject.GetComponent<MINION_CONTROLLER>().GetDamage());
             }
-            if (tanke != null)
+            if(tanke != null)
             {
                 StartCoroutine(other.gameObject.GetComponent<TANKENEMY_CONTROLLER>().GetDamage());
             }
             //aqui si deja apretao se ejecuta 1000 veces por segundo, añade algun tipo de cooldown crack
         }
-       
-            if (other.tag == "GRASS" && Input.GetMouseButton(0))
-            {
-            GRASS_CONTROLLER grass = other.gameObject.GetComponent<GRASS_CONTROLLER>();
-                StartCoroutine(grass.GrassDestroy());
-            }
     }
 }

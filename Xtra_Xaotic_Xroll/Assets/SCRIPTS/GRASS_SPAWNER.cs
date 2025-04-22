@@ -20,14 +20,7 @@ public class GRASS_SPAWNER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.S))// llama a funcion para talar, hay que cambiarlo para que sea automatico con la noche y el dia
-        {
-            for (int i = 0; i < grassSpawner.transform.childCount; i++)
-            {
-                grassSpawner.transform.GetChild(i).gameObject.SetActive(false);
-            }
-            SpawnRandomGrass();
-        }
+        
        
     }
     public void SpawnRandomGrass()//spawnea GRASS en lugares aleatorios y una cantidad aleatoria cuando se le llama
@@ -37,6 +30,15 @@ public class GRASS_SPAWNER : MonoBehaviour
         {
             grassSpawner.transform.GetChild(Random.Range(0, grassSpawner.transform.childCount)).gameObject.SetActive(true);
         }
+    }
+
+    public void DaySpawnTrees()
+    {
+        for (int i = 0; i < grassSpawner.transform.childCount; i++)
+        {
+            grassSpawner.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        SpawnRandomGrass();
     }
     
     
