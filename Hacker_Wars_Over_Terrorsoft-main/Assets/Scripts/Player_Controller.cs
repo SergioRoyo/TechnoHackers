@@ -9,9 +9,13 @@ public class Player_Controller : MonoBehaviour
     public float speed = 5f;       // Velocidad de movimiento horizontal
     public float jumpForce = 5f;   // Fuerza aplicada al saltar
     public bool useTransformMovement;
+    public Animator flip;
+    public TrailRenderer dash;
+    private bool canDash = true;
 
     private Rigidbody2D rb;
     private bool isGrounded = false; // Indica si el jugador está en el suelo
+    public GrapplingHook hook;
     public GameObject civil;
     public bool civilOn = false; //Indica si el civil esta activo o no
     TimeManager timeManager;
@@ -24,14 +28,23 @@ public class Player_Controller : MonoBehaviour
         window = FindObjectOfType<Window_Controller>();
         // Obtiene el componente Rigidbody2D del jugador
         rb = GetComponent<Rigidbody2D>();
+        flip = transform.GetChild(0).GetComponent<Animator>();
+        hook = FindAnyObjectByType<GrapplingHook>();
+        dash = GetComponent<TrailRenderer>();
+        dash.emitting = false;
     }
 
     void Update()
     {
         // Movimiento horizontal
         float x = Input.GetAxis("Horizontal");
+        if (isGrounded)
+        {
+            canDash = true;
+        }
 
         Jump();
+        Dash();
 
         if (useTransformMovement == false)
         {
@@ -40,7 +53,7 @@ public class Player_Controller : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3 (transform.position.x + x * Time.deltaTime * speed, transform.position.y, transform.position.z);          
+            transform.position = new Vector3(transform.position.x + x * Time.deltaTime * speed, transform.position.y, transform.position.z);
         }
     }
 
@@ -52,7 +65,33 @@ public class Player_Controller : MonoBehaviour
         {
             CreateDust();
             GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpForce;
+            flip.Play("FlipAnimation");
         }
+    }
+
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == false && hook.isGrappling == false && canDash)
+        {
+            float dashForce = 20f;
+
+            // Obtiene la dirección actual del movimiento (basada en input)
+            Vector3 inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
+
+            if (inputDirection != Vector3.zero)
+            {
+                Vector3 dashDirection = transform.TransformDirection(inputDirection);
+                rb.velocity = dashDirection * dashForce;
+
+                // Activar trail
+                dash.emitting = true;
+                StartCoroutine(StopTrailAfterTime(0.2f)); // Opcional: detenerlo luego de un momento
+
+                // Inhabilita el dash hasta que vuelva a estar en el suelo
+                canDash = false;
+            }
+        }
+//dash.Play();
     }
 
     // Comprueba si el jugador está en contacto con el suelo mediante colisiones
@@ -92,8 +131,13 @@ public class Player_Controller : MonoBehaviour
             speed = 0;
         }
     }
+    private IEnumerator StopTrailAfterTime(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        dash.emitting = false;
+    }
 
-   public void CreateDust()
+    public void CreateDust()
     {
         dust.Play();
     }

@@ -10,9 +10,9 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private LineRenderer rope; // El objeto que renderiza la "Cuerda" en tiempo real
     [SerializeField] private float ropeMissVisibleDuration = 0.3f; // Tiempo en segundos en el que la cuerda se ve cuando fallas a una pared/suelo
 
-    private Vector3 grapplePoint;
+    public Vector3 grapplePoint;
     private DistanceJoint2D joint;
-    private bool isGrappling = false; // Este booleano se activa cuando estas enganchado a algo
+    public bool isGrappling = false; // Este booleano se activa cuando estas enganchado a algo
     private Coroutine hideCoroutine = null; 
     Window_Controller windowc;
     void Start()
