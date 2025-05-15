@@ -53,8 +53,25 @@ Iker: Tuve problemas a la hora de hacer que el gancho no fuese solo a las plataf
 
 ¿Cómo lo hemos hecho?
 
+
 El proyecto original no tenía la cámara ni el movimineto proporcionado así que primero tuvimos que hacer un "remake" del proyecto de limpiacristales e integrarlo en el proyecto base.
 
 NOTAS
 
 Faltan sprites, falta hacer que los civiles spawneen por los edificios.
+
+Hack #3 - Equipo "Techno Evil Corp"  - 15/05/2025
+
+¿Qué hemos cambiado?
+Sergio: Añadir monedas que se generan aleatoriamente cada 5 segundos y si el personaje las coge se añaden 3 segundos al tiempo que queda.
+ Animación de las monedas girando y otra para cuando se coge la moneda.
+Darío: Añadir una animación al player, que da una voltereta cada vez que salte y un dash que se puede activar presionando el shift, tiene un solo uso y se recarga cada vez que se toca el suelo.
+
+¿Qué problemas hemos encontrado?
+Sergio: Al principio ha dado errores porque el script de spawnear monedas estaba en las propias monedas por lo que al estar desactivadas las monedas no se podía ejecutar, pero se ha solucionado rápido y ahora funciona bien.
+Darío: El dash no funcionaba bien al principio porque no detectaba bien el suelo y solo se podía usar una vez, pero ya está solucionado.
+
+¿Cómo lo hemos hecho?
+Sergio: He creado 2 scripts, Coin_Spawner, en el cual hay una corrutina que cada 5 segundos spawnean nuevas monedas y se desactivan las que esteban y esto es posible con bucles for  y Coin_Controller en el cual hay una función de trigger la cual detecta cuando el player coge la moneda y se añade tiempo.
+
+
