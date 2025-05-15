@@ -58,3 +58,10 @@ El proyecto original no tenía la cámara ni el movimineto proporcionado así qu
 NOTAS
 
 Faltan sprites, falta hacer que los civiles spawneen por los edificios.
+
+
+Hack #3 - Sergio, Jorge, Darío y Hector
+
+-Añadida la mecánica de dash al balancearse
+
+-Añadida la animación al saltar
